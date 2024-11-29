@@ -1,18 +1,13 @@
 import { Routes } from "@angular/router";
 import { HomeComponent } from './home/home.component';
-import { DetailsComponent } from "./details/details.component";
+import { InterventionFirstRequestComponent } from "./intervention-first-request/intervention-first-request.component";
 
 const routeConfig: Routes = [
      {
         path: '',
-        component: HomeComponent,
-        title: 'Home Page'
+        component: InterventionFirstRequestComponent,
+        title: "Demande d'intervention"
      },
-     {
-        path: 'details/:id',
-        component: DetailsComponent,
-        title: 'Details Page'
-     }
 ];
 
 export default routeConfig;
