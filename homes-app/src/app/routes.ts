@@ -1,5 +1,4 @@
 import { Routes } from "@angular/router";
-import { HomeComponent } from './home/home.component';
 import { InterventionFirstRequestComponent } from "./intervention-first-request/intervention-first-request.component";
 
 const routeConfig: Routes = [
