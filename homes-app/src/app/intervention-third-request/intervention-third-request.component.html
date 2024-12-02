@@ -1,0 +1,29 @@
+<header>
+    <img src="assets/afpa-logo.jpg" alt="logo de l'afpa">
+</header>
+<section>
+   <p>Votre demande a été enregistrée</p><br>
+   <p>Votre numéro de demande d'intervention</p> 
+</section>
+<section>
+  <div>
+    {{ interventionData.id }}
+  </div>
+    <div>
+        A lire attentivement
+    </div>
+    <div>
+      Veillez à conserver le numéro de demande d'intervention ci-dessus.
+
+      Avec celui-ci, vous pourrez suivre l'évolution de votre demande à l'adresse :
+        <a href="">Suivre la demande</a>
+        Vous pourrez aussi l'indiquer aux personnes en charge des interventions pour qu'ils retrouvent facilement votre demande.
+    </div>
+</section>
+<section *ngIf="loading">
+    <p>Chargement des données...</p>
+  </section>
+  
+  <section *ngIf="!loading && !interventionData">
+    <p>Aucune donnée trouvée pour cette intervention.</p>
+  </section>

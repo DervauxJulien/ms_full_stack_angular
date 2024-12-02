@@ -54,6 +54,7 @@ export class InterventionFirstRequestComponent {
     //   console.log('Formulaire invalide');
     //   alert('Veuillez remplir tous les champs requis.');
     // }
+    
       this.interventionService.submitIntervention(formData).subscribe({
        next: (response) => {
          if (response) {

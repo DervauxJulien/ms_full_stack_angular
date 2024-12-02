@@ -22,6 +22,11 @@ export class InterventionService {
   clearData() {
     this.data = {};
   }
+
+  getInterventionById(id: string): Observable<any> {
+    return this.http.get(`http://localhost:3000/INTERVENTION/${id}`);
+  }
+  
   // 02/12/2024 Julien
   // j'utilise checkUser pour envoyer la data à l'API afin de recevoir ensuite un boolean
   // checkUser(payload: any): Observable<boolean> {
@@ -30,5 +35,9 @@ export class InterventionService {
 
   submitIntervention(data: any): Observable<any> {
     return this.http.post('http://localhost:3000/INTERVENTION', data);
+  }
+
+  getAllInterventions(): Observable<any[]> {
+    return this.http.get<any[]>('http://localhost:3000/INTERVENTION');
   }
 }

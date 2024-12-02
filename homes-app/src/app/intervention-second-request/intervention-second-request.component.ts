@@ -35,7 +35,8 @@ export class InterventionSecondRequestComponent {
         next: (response) => {
           console.log('Succès:', response);
           alert('Votre demande a été soumise avec succès.');
-          this.router.navigate(['/']); 
+          const createdInterventionId = response.id;
+          this.router.navigate(['/validate', createdInterventionId]);
         },
         error: (error) => {
           console.error('Erreur:', error);
