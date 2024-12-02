@@ -29,11 +29,53 @@ export class InterventionFirstRequestComponent {
 
   submitApplication() {
     if (this.applyFirstForm.valid) {
-      this.interventionService.setData('stepOneData', this.applyFirstForm.value);
-      this.router.navigate(['/step-two']); // Naviguer vers la deuxième page
+
+      const formData = this.applyFirstForm.value;
+
+      // 02/12/2024 Julien
+      // pour utiliser l'API je dois utiliser ma method checkUser dans service
+      // pour mes test je débride ca
+
+      // this.interventionService.checkUser(formData).subscribe({
+      //  next: (response) => {
+      //    if (response) {
+      //      this.interventionService.setData('stepOneData', formData);
+      //      this.router.navigate(['/description']);
+      //    } else {
+      //      alert("Utilisateur non reconnu. Veuillez vérifier vos informations.");
+      //    }
+    //     },
+    //     error: (error) => {
+    //       console.error('Erreur API:', error);
+    //       alert('Une erreur est survenue lors de la vérification.');
+    //     },
+    //   });
+    // } else {
+    //   console.log('Formulaire invalide');
+    //   alert('Veuillez remplir tous les champs requis.');
+    // }
+      this.interventionService.submitIntervention(formData).subscribe({
+       next: (response) => {
+         if (response) {
+           this.interventionService.setData('stepOneData', formData);
+           this.router.navigate(['/description']);
+         } else {
+           alert("Utilisateur non reconnu. Veuillez vérifier vos informations.");
+         }
+        },
+        error: (error) => {
+          console.error('Erreur API:', error);
+          alert('Une erreur est survenue lors de la vérification.');
+        },
+      });
     } else {
       console.log('Formulaire invalide');
       alert('Veuillez remplir tous les champs requis.');
     }
+
+
+
+
   }
+  
 }

@@ -10,7 +10,8 @@ import { RouterModule } from '@angular/router';
     <header class="brand-name">
     </header>
     <section class="content">
-    <router-outlet></router-outlet>
+    <router-outlet>
+    </router-outlet>
     </section>
   </main>
   `,

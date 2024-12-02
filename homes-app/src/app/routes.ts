@@ -4,7 +4,7 @@ import { InterventionSecondRequestComponent } from './intervention-second-reques
 
 const routeConfig: Routes = [
   { path: '', component: InterventionFirstRequestComponent },
-  { path: 'step-two', component: InterventionSecondRequestComponent },
+  { path: 'description', component: InterventionSecondRequestComponent },
 ];
 
 export default routeConfig;
