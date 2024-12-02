@@ -6,11 +6,24 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class InterventionService {
-  private apiUrl = 'https://localhost:3000';
+
+  private data: any = {};
+
+  setData(key: string, value: any){
+    this.data[key] = value;
+  }
+
+  getData(key: string) {
+    return this.data[key];
+  }
+
+  clearData() {
+    this.data = {};
+  }
 
   constructor(private http: HttpClient) {}
 
   submitIntervention(data: any): Observable<any> {
-    return this.http.post(this.apiUrl, data);
+    return this.http.post('http://localhost:3000/INTERVENTION', data);
   }
 }

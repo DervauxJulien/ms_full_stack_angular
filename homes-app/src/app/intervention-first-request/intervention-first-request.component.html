@@ -1,6 +1,6 @@
 <section class="listing-apply">
     <h2 class="section-heading">Formulaire de demande d'intervention - PAGE 1</h2>
-    <form [formGroup]="applyForm" (ngSubmit)="submitApplication()">
+    <form [formGroup]="applyFirstForm" (ngSubmit)="submitApplication()">
       <label for="registration">Registration</label>
       <input id="registration" type="text" formControlName="registration">
 
@@ -13,11 +13,11 @@
       <label for="email">Email</label>
       <input id="email" type="email" formControlName="email">
       
-      <div *ngIf="applyForm.get('email')?.invalid && applyForm.get('email')?.touched">
-        <small *ngIf="applyForm.get('email')?.errors?.['required']">Email est requis.</small>
-        <small *ngIf="applyForm.get('email')?.errors?.['email']">Email invalide.</small>
+      <div *ngIf="applyFirstForm.get('email')?.invalid && applyFirstForm.get('email')?.touched">
+        <small *ngIf="applyFirstForm.get('email')?.errors?.['required']">Email est requis.</small>
+        <small *ngIf="applyFirstForm.get('email')?.errors?.['email']">Email invalide.</small>
       </div>
 
-      <button type="submit" class="primary" [disabled]="applyForm.invalid">Apply now</button>
+      <button type="submit" class="primary" [disabled]="applyFirstForm.invalid">Apply now</button>
     </form>
   </section>

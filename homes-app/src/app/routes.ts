@@ -1,12 +1,10 @@
-import { Routes } from "@angular/router";
-import { InterventionFirstRequestComponent } from "./intervention-first-request/intervention-first-request.component";
+import { Routes } from '@angular/router';
+import { InterventionFirstRequestComponent } from './intervention-first-request/intervention-first-request.component';
+import { InterventionSecondRequestComponent } from './intervention-second-request/intervention-second-request.component';
 
 const routeConfig: Routes = [
-     {
-        path: '',
-        component: InterventionFirstRequestComponent,
-        title: "Demande d'intervention"
-     },
+  { path: '', component: InterventionFirstRequestComponent },
+  { path: 'step-two', component: InterventionSecondRequestComponent },
 ];
 
 export default routeConfig;
