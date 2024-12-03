@@ -1,23 +1,44 @@
-<section class="listing-apply">
-    <h2 class="section-heading">Formulaire de demande d'intervention - PAGE 1</h2>
-    <form [formGroup]="applyFirstForm" (ngSubmit)="submitApplication()">
-      <label for="registration">Registration</label>
-      <input id="registration" type="text" formControlName="registration">
-
-      <label for="first-name">First Name</label>
-      <input id="first-name" type="text" formControlName="firstName">
-
-      <label for="last-name">Last Name</label>
-      <input id="last-name" type="text" formControlName="lastName">
-
-      <label for="email">Email</label>
-      <input id="email" type="email" formControlName="email">
-      
-      <div *ngIf="applyFirstForm.get('email')?.invalid && applyFirstForm.get('email')?.touched">
-        <small *ngIf="applyFirstForm.get('email')?.errors?.['required']">Email est requis.</small>
-        <small *ngIf="applyFirstForm.get('email')?.errors?.['email']">Email invalide.</small>
+  <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <section class="flex justify-center">
+      <img src="assets/afpa-logo.jpg" alt="">
+    </section>
+    <section>
+      <div class="flex justify-center">
+        <h2 class="text-3xl font-bold p-10">Demande d'intervention</h2>
       </div>
+      <form class="max-w-sm mx-auto" [formGroup]="applyFirstForm" (ngSubmit)="submitApplication()">
+        <div class="mb-5">
+          <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            for="registration">Registration</label>
+          <input
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            id="registration" type="text" formControlName="registration">
+        </div>
+        <div class="mb-5">
+          <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="first-name">First
+            Name</label>
+          <input
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            id="first-name" type="text" formControlName="firstName">
+        </div>
+        <div class="mb-5">
+          <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="last-name">Last Name</label>
+          <input
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            id="last-name" type="text" formControlName="lastName">
+        </div>
+        <div class="mb-5">
+          <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="email">Email</label>
+          <input
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            id="email" type="email" formControlName="email">
+        </div>
+        <div *ngIf="applyFirstForm.get('email')?.invalid && applyFirstForm.get('email')?.touched">
+          <small *ngIf="applyFirstForm.get('email')?.errors?.['required']">Email est requis.</small>
+          <small *ngIf="applyFirstForm.get('email')?.errors?.['email']">Email invalide.</small>
+        </div>
 
-      <button type="submit" class="primary" [disabled]="applyFirstForm.invalid">Apply now</button>
-    </form>
-  </section>
+        <button type="submit" class="primary" [disabled]="applyFirstForm.invalid">Apply now</button>
+      </form>
+    </section>
+  </div>

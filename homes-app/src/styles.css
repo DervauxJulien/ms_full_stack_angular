@@ -1,9 +1,17 @@
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
     margin: 0;
     padding: 0;
+    /* box-sizing: border-box; */
   }
   
+  /* html {
+    height: 100vh;
+  } */
   body {
     font-family: 'Be Vietnam Pro', sans-serif;
   }
@@ -21,3 +29,4 @@
     color: white;
     border-radius: 8px;
   }
+

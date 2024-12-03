@@ -6,10 +6,8 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   selector: 'app-root',
   template: `
-  <main>
-    <header class="brand-name">
-    </header>
-    <section class="content">
+  <main class="">
+    <section>
     <router-outlet>
     </router-outlet>
     </section>

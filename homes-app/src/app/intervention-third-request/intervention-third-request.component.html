@@ -1,29 +1,45 @@
-<header>
-    <img src="assets/afpa-logo.jpg" alt="logo de l'afpa">
-</header>
-<section>
-   <p>Votre demande a été enregistrée</p><br>
-   <p>Votre numéro de demande d'intervention</p> 
-</section>
-<section>
-  <div>
-    {{ interventionData.id }}
-  </div>
-    <div>
-        A lire attentivement
+<div
+  class="flex-col justify-center max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+  <section class="flex justify-center mb-5">
+    <img src="assets/afpa-logo.jpg" alt="">
+  </section>
+  <section class="flex-col">
+    <div class="mb-5">
+      <p class="flex justify-center">Votre demande a été enregistrée</p>
     </div>
-    <div>
-      Veillez à conserver le numéro de demande d'intervention ci-dessus.
+    <div class="mb-5">
+      <p class="flex justify-center">Votre numéro de demande d'intervention</p>
+    </div>
+    <section class="flex justify-center mb-5">
+      <div class="flex justify-center bg-slate-100 w-52 p-5 rounded-lg">
+        {{ interventionData.id }}
+      </div>
+    </section>
+    <section
+      class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div
+        class="flex flex-wrap justify-center text-sm font-medium text-center text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800">
+        <p class="font-bold">A lire attentivement</p>
+      </div>
+      <div class="flex-col justify-center p-5">
+        <p>Veillez à conserver le numéro de demande d'intervention ci-dessus.</p><br>
+        <p>Avec celui-ci, vous pourrez suivre l'évolution de votre demande à l'adresse : <br>
+          <a class="font-bold text-blue-500" href="">Suivre la demande</a>
+        </p><br>
+        <p>
+          Vous pourrez aussi l'indiquer aux personnes en charge des interventions pour qu'ils retrouvent facilement
+          votre
+          demande.
+        </p>
+      </div>
 
-      Avec celui-ci, vous pourrez suivre l'évolution de votre demande à l'adresse :
-        <a href="">Suivre la demande</a>
-        Vous pourrez aussi l'indiquer aux personnes en charge des interventions pour qu'ils retrouvent facilement votre demande.
-    </div>
-</section>
-<section *ngIf="loading">
-    <p>Chargement des données...</p>
+      <div *ngIf="loading">
+        <p>Chargement des données...</p>
+      </div>
+
+      <div *ngIf="!loading && !interventionData">
+        <p>Aucune donnée trouvée pour cette intervention.</p>
+      </div>
+    </section>
   </section>
-  
-  <section *ngIf="!loading && !interventionData">
-    <p>Aucune donnée trouvée pour cette intervention.</p>
-  </section>
+</div>
