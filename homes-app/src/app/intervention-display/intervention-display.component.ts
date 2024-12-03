@@ -16,7 +16,7 @@ export class InterventionDisplayComponent {
   interventionId!: string; 
   loading = true; 
   interventionData: any = null; 
-  displayedColumns: string[] = ['id', 'registration', 'firstName', 'lastName', 'CREATION_DATE', 'STATUS', 'description'];
+  displayedColumns: string[] = ['seeMore', 'id','description', 'registration', 'firstName', 'lastName', 'CREATION_DATE', 'STATUS', ];
 
   constructor(
     private interventionService: InterventionService,
@@ -29,7 +29,7 @@ export class InterventionDisplayComponent {
     if (this.interventionId) {
       this.interventionService.getInterventionById(this.interventionId).subscribe({
         next: (data) => {
-          this.interventionData = [data];
+          this.interventionData = data;
           this.loading = false;
         },
         error: (error) => {

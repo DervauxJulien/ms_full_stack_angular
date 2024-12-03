@@ -18,7 +18,7 @@ export class InterventionFirstRequestComponent {
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
-    CREATION_DATE: new FormControl(format(new Date(), "yyyy-MM-dd'T'HH:mm:ssxxx")),
+    CREATION_DATE: new FormControl(format(new Date(), "dd-MM-yyyy HH:mm")),
     STATUS: new FormControl('pending'),
   });
 
