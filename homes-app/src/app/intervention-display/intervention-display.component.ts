@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InterventionService } from '../services/intervention.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
 import { CdkTableModule } from '@angular/cdk/table';
 import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-intervention-display',
   standalone: true,
-  imports: [CommonModule, MatTableModule, CdkTableModule, MatButtonModule],
+  imports: [CommonModule, MatTableModule, CdkTableModule, MatButtonModule, RouterModule],
   templateUrl: './intervention-display.component.html',
   styleUrls: ['./intervention-display.component.css'],
 })

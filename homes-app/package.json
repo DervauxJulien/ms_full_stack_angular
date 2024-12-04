@@ -25,7 +25,6 @@
     "@angular/router": "^16.0.1",
     "date-fns": "^4.1.0",
     "primeicons": "^7.0.0",
-    "primeng": "^17.18.12",
     "rxjs": "~7.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"

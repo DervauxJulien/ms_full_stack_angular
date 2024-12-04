@@ -45,7 +45,7 @@
           {{ element[column] || '' }}
         </ng-container>
         <ng-container *ngIf="column === 'test'">
-          <button mat-button (click)="toggleDescription(element)">
+          <button (click)="toggleDescription(element)">
             {{ expandedElement === element ? 'Voir moins' : 'Voir plus' }}
           </button>
         </ng-container>
