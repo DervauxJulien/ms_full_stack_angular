@@ -2,16 +2,16 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { InterventionService } from '../services/intervention.service';
+import { InterventionService } from 'src/app/services/intervention.service';
 
 @Component({
-  selector: 'app-intervention-second-request',
+  selector: 'app-description',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './intervention-second-request.component.html',
-  styleUrls: ['./intervention-second-request.component.css'],
+  templateUrl: './description.component.html',
+  styleUrls: ['./description.component.css']
 })
-export class InterventionSecondRequestComponent {
+export class DescriptionComponent {
   applySecondForm = new FormGroup({
     description: new FormControl('', Validators.required),
   });
@@ -48,4 +48,5 @@ export class InterventionSecondRequestComponent {
       alert('Veuillez remplir tous les champs requis.');
     }
   }
+
 }

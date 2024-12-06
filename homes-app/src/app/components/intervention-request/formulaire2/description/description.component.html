@@ -1,0 +1,27 @@
+<div class="
+max-w-sm p-6
+bg-white border
+border-gray-200 
+rounded-lg shadow
+dark:bg-gray-800
+dark:border-gray-700">
+<section class="flex justify-center">
+  <img src="assets/afpa-logo.jpg" alt="">
+</section>
+<section>
+  <div class="flex justify-center">
+    <h2 class="text-3xl font-bold p-10">Demande d'intervention</h2>
+  </div>
+  <form class="max-w-sm mx-auto" [formGroup]="applySecondForm" (ngSubmit)="submitData()">
+    <div class="mb-5">
+      <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        for="description">Description</label>
+      <textarea
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        id="description" type="text" formControlName="description"
+        placeholder="Description de l'intervention..."></textarea>
+    </div>
+    <button type="submit" class="primary" [disabled]="applySecondForm.invalid">Apply now</button>
+  </form>
+</section>
+</div>

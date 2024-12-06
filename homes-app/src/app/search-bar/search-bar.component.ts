@@ -1,7 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { MatIconRegistry } from "@angular/material/icon";
 import { CommonModule } from '@angular/common';
-import { listData } from './shared/list';
 import { Pipe, PipeTransform } from '@angular/core';
 
 
@@ -13,7 +12,6 @@ import { Pipe, PipeTransform } from '@angular/core';
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent implements PipeTransform  {
-  list = listData.reverse();
   @ViewChild('searchbar') searchbar: ElementRef;
   searchText = '';
 

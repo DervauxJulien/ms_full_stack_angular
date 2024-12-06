@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { InterventionService } from '../services/intervention.service';
 import { ActivatedRoute } from '@angular/router';
+import { InterventionService } from 'src/app/services/intervention.service';
 
 @Component({
-  selector: 'app-intervention-third-request',
+  selector: 'app-validate',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './intervention-third-request.component.html',
-  styleUrls: ['./intervention-third-request.component.css']
+  templateUrl: './validate.component.html',
+  styleUrls: ['./validate.component.css']
 })
-export class InterventionThirdRequestComponent implements OnInit {
+export class ValidateComponent {
 
   interventionId!: string; 
   interventionData: any = null; 
   loading = true; 
 
   constructor(
-    private interventionService: InterventionService,
+    private InterventionService: InterventionService,
     private route: ActivatedRoute
   ) {}
 
@@ -25,7 +25,7 @@ export class InterventionThirdRequestComponent implements OnInit {
     this.interventionId = this.route.snapshot.paramMap.get('id')!;
 
     if (this.interventionId) {
-      this.interventionService.getInterventionById(this.interventionId).subscribe({
+      this.InterventionService.getInterventionById(this.interventionId).subscribe({
         next: (data) => {
           this.interventionData = data;
           this.loading = false;
@@ -40,4 +40,5 @@ export class InterventionThirdRequestComponent implements OnInit {
       this.loading = false;
     }
   }
+
 }

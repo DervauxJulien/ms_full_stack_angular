@@ -2,22 +2,22 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { InterventionService } from '../services/intervention.service';
 import { format } from 'date-fns';
+import { InterventionService } from 'src/app/services/intervention.service';
 
 @Component({
-  selector: 'app-intervention-request',
+  selector: 'app-connection',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './intervention-first-request.component.html',
-  styleUrls: ['./intervention-first-request.component.css'],
+  templateUrl: './connection.component.html',
+  styleUrls: ['./connection.component.css']
 })
-export class InterventionFirstRequestComponent {
+export class ConnectionComponent {
+
   applyFirstForm = new FormGroup({
     registration: new FormControl('', Validators.required),
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
-    email: new FormControl('', [Validators.required, Validators.email]),
     CREATION_DATE: new FormControl(format(new Date(), "dd-MM-yyyy HH:mm")),
     STATUS: new FormControl('pending'),
   });
@@ -78,5 +78,5 @@ export class InterventionFirstRequestComponent {
 
 
   }
-  
+
 }

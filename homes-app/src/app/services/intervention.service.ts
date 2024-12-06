@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
+
 export class InterventionService {
 
   private data: any = {};
@@ -26,6 +27,11 @@ export class InterventionService {
   getInterventionById(id: string): Observable<any> {
     return this.http.get(`http://localhost:3000/INTERVENTION/${id}`);
   }
+  getAllInterventions(): Observable<any[]> {
+    return this.http.get<any[]>('http://localhost:3000/INTERVENTION');
+  }
+
+
   
   // 02/12/2024 Julien
   // j'utilise checkUser pour envoyer la data à l'API afin de recevoir ensuite un boolean
@@ -33,11 +39,13 @@ export class InterventionService {
   //   return this.http.post<boolean>('http://localhost:3000/CHECK_USER', payload);
   // }
 
+  // checkUser(data:any): Observable<any> {
+  //   return this.http.post('http://localhost:3000/_USER')
+  // }
+
   submitIntervention(data: any): Observable<any> {
     return this.http.post('http://localhost:3000/INTERVENTION', data);
   }
 
-  getAllInterventions(): Observable<any[]> {
-    return this.http.get<any[]>('http://localhost:3000/INTERVENTION');
-  }
+
 }
