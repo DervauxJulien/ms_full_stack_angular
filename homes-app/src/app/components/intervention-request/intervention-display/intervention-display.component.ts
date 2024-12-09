@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';  // Déjà importé
-import { MatTableModule, MatTableDataSource } from '@angular/material/table';  // Nécessaire pour mat-table
-import { CdkTableModule } from '@angular/cdk/table';  // Nécessaire pour CdkColumnDef
-import { MatButtonModule } from '@angular/material/button';  // Pour les boutons
+import { CommonModule } from '@angular/common';  
+import { MatTableModule, MatTableDataSource } from '@angular/material/table';  
+import { CdkTableModule } from '@angular/cdk/table';  
+import { MatButtonModule } from '@angular/material/button';  
 import { InterventionService } from '../../../services/intervention.service';
 import { ActivatedRoute, Data, RouterModule } from '@angular/router';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
