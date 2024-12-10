@@ -2,81 +2,49 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { format } from 'date-fns';
-import { InterventionService } from 'src/app/services/intervention.service';
+import { UsersService } from 'src/app/services/users.service';
+import { User } from 'src/app/interfaces/user-interface';
 
 @Component({
   selector: 'app-connection',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './connection.component.html',
-  styleUrls: ['./connection.component.css']
+  styleUrls: ['./connection.component.css'],
 })
 export class ConnectionComponent {
-
   applyFirstForm = new FormGroup({
     registration: new FormControl('', Validators.required),
-    firstName: new FormControl('', Validators.required),
-    lastName: new FormControl('', Validators.required),
-    CREATION_DATE: new FormControl(format(new Date(), "dd-MM-yyyy HH:mm")),
-    STATUS: new FormControl('pending'),
+    firstname: new FormControl('', Validators.required),
+    lastname: new FormControl('', Validators.required),
   });
 
   constructor(
-    private interventionService: InterventionService,
-    private router: Router,
+    private usersService: UsersService,
+    private router: Router
   ) {}
 
-  submitApplication() {
+  submitUser() {
     if (this.applyFirstForm.valid) {
+      const userData = {
+        ...this.applyFirstForm.value,
+      } as Partial<User>;
 
-      const formData = this.applyFirstForm.value;
+      this.usersService.setUser(userData).subscribe({
+        next: (userResponse) => {
 
-      // 02/12/2024 Julien
-      // pour utiliser l'API je dois utiliser ma method checkUser dans service
-      // pour mes test je débride ca
+          const userId = userResponse; 
+          console.log(userId);
+          this.usersService.setData('currentUserId', userId);
 
-      // this.interventionService.checkUser(formData).subscribe({
-      //  next: (response) => {
-      //    if (response) {
-      //      this.interventionService.setData('stepOneData', formData);
-      //      this.router.navigate(['/description']);
-      //    } else {
-      //      alert("Utilisateur non reconnu. Veuillez vérifier vos informations.");
-      //    }
-    //     },
-    //     error: (error) => {
-    //       console.error('Erreur API:', error);
-    //       alert('Une erreur est survenue lors de la vérification.');
-    //     },
-    //   });
-    // } else {
-    //   console.log('Formulaire invalide');
-    //   alert('Veuillez remplir tous les champs requis.');
-    // }
-    
-      this.interventionService.submitIntervention(formData).subscribe({
-       next: (response) => {
-         if (response) {
-           this.interventionService.setData('stepOneData', formData);
-           this.router.navigate(['/description']);
-         } else {
-           alert("Utilisateur non reconnu. Veuillez vérifier vos informations.");
-         }
+          this.router.navigate(['/description']);
         },
         error: (error) => {
-          console.error('Erreur API:', error);
-          alert('Une erreur est survenue lors de la vérification.');
+          console.error('Erreur lors de la vérification/création de l\'utilisateur :', error);
         },
       });
     } else {
       console.log('Formulaire invalide');
-      alert('Veuillez remplir tous les champs requis.');
     }
-
-
-
-
   }
-
 }

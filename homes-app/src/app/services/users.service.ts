@@ -1,33 +1,30 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { User } from '../interfaces/user-interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-
-  private data: any = {};
+  private baseUrl = 'http://localhost:8080';
+  private dataCache: any = {}; 
 
   constructor(private http: HttpClient) {}
 
-  setData(key: string, value: any){
-    this.data[key] = value;
+  setUser(data: Partial<User>): Observable<User> {
+    return this.http.post<User>(`${this.baseUrl}/checkUser`, data);
   }
 
-  getData(key: string) {
-    return this.data[key];
+  setData(key: string, value: any): any {
+    this.dataCache[key] = value;
+    console.log(this.dataCache[key]);
   }
 
-  clearData() {
-    this.data = {};
+  getData(key: string): any {
+    return this.dataCache[key];
   }
-
-  getUserById(id: string): Observable<any> {
-    return this.http.get<any[]>(`http://localhost:3000/_USER/${id}`);
+  clearData(): void {
+    this.dataCache = {};
   }
-  getAllUsers(): Observable<any> {
-    return this.http.get<any[]>(`http://localhost:3000/_USER`);
-  }
-  }
-
+}

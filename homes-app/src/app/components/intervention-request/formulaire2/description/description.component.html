@@ -12,7 +12,7 @@ dark:border-gray-700">
   <div class="flex justify-center">
     <h2 class="text-3xl font-bold p-10">Demande d'intervention</h2>
   </div>
-  <form class="max-w-sm mx-auto" [formGroup]="applySecondForm" (ngSubmit)="submitData()">
+  <form class="max-w-sm mx-auto" [formGroup]="interventionForm" (ngSubmit)="submitIntervention()">
     <div class="mb-5">
       <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
         for="description">Description</label>
@@ -21,7 +21,7 @@ dark:border-gray-700">
         id="description" type="text" formControlName="description"
         placeholder="Description de l'intervention..."></textarea>
     </div>
-    <button type="submit" class="primary" [disabled]="applySecondForm.invalid">Apply now</button>
+    <button type="submit" class="primary" [disabled]="interventionForm.invalid">Apply now</button>
   </form>
 </section>
 </div>

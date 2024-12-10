@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { InterventionService } from 'src/app/services/intervention.service';
+import { Intervention } from 'src/app/interfaces/intervention-interface';
 
 @Component({
   selector: 'app-validate',
@@ -12,8 +13,8 @@ import { InterventionService } from 'src/app/services/intervention.service';
 })
 export class ValidateComponent {
 
-  interventionId!: string; 
-  interventionData: any = null; 
+  interventionId!: number; 
+  interventionData!: Intervention; 
   loading = true; 
 
   constructor(
@@ -22,7 +23,8 @@ export class ValidateComponent {
   ) {}
 
   ngOnInit() {
-    this.interventionId = this.route.snapshot.paramMap.get('id')!;
+    this.interventionId = Number(this.route.snapshot.paramMap.get('id')!);
+    console.log(this.interventionId);
 
     if (this.interventionId) {
       this.InterventionService.getInterventionById(this.interventionId).subscribe({
@@ -42,3 +44,4 @@ export class ValidateComponent {
   }
 
 }
+

@@ -1,51 +1,25 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Intervention } from '../interfaces/intervention-interface';
 
 @Injectable({
   providedIn: 'root',
 })
-
 export class InterventionService {
-
-  private data: any = {};
+  private baseUrl = 'http://localhost:8080'; 
 
   constructor(private http: HttpClient) {}
 
-  setData(key: string, value: any){
-    this.data[key] = value;
+  submitIntervention(data: Partial<Intervention>): Observable<Intervention> {
+    return this.http.post<Intervention>(`${this.baseUrl}/create_intervention_rest`, data);
   }
 
-  getData(key: string) {
-    return this.data[key];
+  getInterventionById(data : any): Observable<Intervention> {
+    return this.http.post<Intervention>(`${this.baseUrl}/intervention_details`, data);
   }
 
-  clearData() {
-    this.data = {};
+  getAllInterventions(): Observable<Intervention[]> {
+    return this.http.get<Intervention[]>(this.baseUrl);
   }
-
-  getInterventionById(id: string): Observable<any> {
-    return this.http.get(`http://localhost:3000/INTERVENTION/${id}`);
-  }
-  getAllInterventions(): Observable<any[]> {
-    return this.http.get<any[]>('http://localhost:3000/INTERVENTION');
-  }
-
-
-  
-  // 02/12/2024 Julien
-  // j'utilise checkUser pour envoyer la data à l'API afin de recevoir ensuite un boolean
-  // checkUser(payload: any): Observable<boolean> {
-  //   return this.http.post<boolean>('http://localhost:3000/CHECK_USER', payload);
-  // }
-
-  // checkUser(data:any): Observable<any> {
-  //   return this.http.post('http://localhost:3000/_USER')
-  // }
-
-  submitIntervention(data: any): Observable<any> {
-    return this.http.post('http://localhost:3000/INTERVENTION', data);
-  }
-
-
 }

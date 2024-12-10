@@ -6,7 +6,7 @@
       <div class="flex justify-center">
         <h2 class="text-3xl font-bold p-10">Demande d'intervention</h2>
       </div>
-      <form class="max-w-sm mx-auto" [formGroup]="applyFirstForm" (ngSubmit)="submitApplication()">
+      <form class="max-w-sm mx-auto" [formGroup]="applyFirstForm" (ngSubmit)="submitUser()">
         <div class="mb-5">
           <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             for="registration">Registration</label>
@@ -19,13 +19,13 @@
             Name</label>
           <input
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            id="first-name" type="text" formControlName="firstName">
+            id="first-name" type="text" formControlName="firstname">
         </div>
         <div class="mb-5">
           <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="last-name">Last Name</label>
           <input
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            id="last-name" type="text" formControlName="lastName">
+            id="last-name" type="text" formControlName="lastname">
         </div>
 
         <div *ngIf="applyFirstForm.get('email')?.invalid && applyFirstForm.get('email')?.touched">

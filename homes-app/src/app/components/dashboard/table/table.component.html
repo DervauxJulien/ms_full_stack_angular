@@ -1,75 +1,78 @@
-<div class="flex justify-between">
-  <h1>Mes demandes d'intervention</h1>
-  <a href="" class="bg-blue-500 text-white w-auto">Ajouter une demande</a>
-</div>
-
-<div *ngIf="loading">Chargement des données...</div>
-
-<div class="mat-elevation-z8">
-<!-- Table Material -->
-<table mat-table [dataSource]="interventionData" *ngIf="!loading">
-  <!-- See More Column -->
-  <ng-container  matColumnDef="SHOWDETAILS">
-    <th mat-header-cell *matHeaderCellDef> . </th>
-    <td mat-cell *matCellDef="let element">
-      <button mat-button (click)="toggleDescription()">
-        {{ showDescription ? 'Hide' : 'Show' }}
-      </button>
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="ID_INTERVENTION">
-    <th mat-header-cell *matHeaderCellDef> Numéro de la demande </th>
-    <td mat-cell *matCellDef="let element"> {{ element.ID_INTERVENTION }} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="DESCRIPTION">
-    <th mat-header-cell *matHeaderCellDef> Description </th>
-    <td mat-cell *matCellDef="let element"> {{ element.DESCRIPTION }} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="COLLABORATOR">
-    <th mat-header-cell *matHeaderCellDef> Collaborateur </th>
-    <td mat-cell *matCellDef="let element"> . </td>
-  </ng-container>
-
-  <ng-container matColumnDef="CREATION_DATE">
-    <th mat-header-cell *matHeaderCellDef> Date de la demande </th>
-    <td mat-cell *matCellDef="let element"> {{ element.CREATION_DATE }} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="PRIORITY">
-    <th mat-header-cell *matHeaderCellDef> Priorité de la demande </th>
-    <td mat-cell *matCellDef="let element"> </td>
-  </ng-container>
-
-  <ng-container matColumnDef="STATUS">
-    <th mat-header-cell *matHeaderCellDef> Status </th>
-    <td mat-cell *matCellDef="let element"> {{ element.STATUS }} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="TREATMENT">
-    <th mat-header-cell *matHeaderCellDef> Prise en charge </th>
-    <td mat-cell *matCellDef="let element"> </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+<!-- <div class="flex justify-between">
+    <h1>Mes demandes d'intervention</h1>
+    <a href="" class="bg-blue-500 text-white w-auto">Ajouter une demande</a>
+  </div>
   
-</table>
-
-<div *ngIf="showDescription">
-<p *ngFor="let data of dataIntervention">{{data.DESCRIPTION}}</p>
-</div>
-
-<mat-paginator [pageSizeOptions]="[5, 10, 20]"
-showFirstLastButtons
-aria-label="Select page of periodic elements">
-</mat-paginator>
-
-</div>
-
-<!-- <div *ngIf="interventionData.some(element => element.showDescription)">
-  <h3>Description Détail</h3>
-  <p>{{ interventionData.find(element => element.showDescription)?.description }}</p>
-</div> -->
+  <div *ngIf="loading">Chargement des données...</div>
+  
+  <div class="mat-elevation-z8" *ngIf="!loading">
+    <!-- Table Material -->
+    <table mat-table [dataSource]="interventionData" class="mat-table">
+      <!-- Bouton Détails -->
+      <ng-container matColumnDef="SHOWDETAILS">
+        <th mat-header-cell *matHeaderCellDef> . </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="toggleDescription()">
+            {{ showDescription ? 'Masquer' : 'Voir' }}
+          </button>
+        </td>
+      </ng-container>
+  
+      <!-- Colonne ID_INTERVENTION -->
+      <ng-container matColumnDef="ID_INTERVENTION">
+        <th mat-header-cell *matHeaderCellDef> Numéro de la demande </th>
+        <td mat-cell *matCellDef="let element"> {{ element.idIntervention }} </td>
+      </ng-container>
+  
+      <!-- Colonne DESCRIPTION -->
+      <ng-container matColumnDef="DESCRIPTION">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let element"> {{ element.description }} </td>
+      </ng-container>
+  
+      <!-- Colonne COLLABORATOR -->
+      <ng-container matColumnDef="COLLABORATOR">
+        <th mat-header-cell *matHeaderCellDef> Collaborateur </th>
+        <td mat-cell *matCellDef="let element"> {{ element.idIntervenant }} </td>
+      </ng-container>
+  
+      <!-- Colonne CREATION_DATE -->
+      <ng-container matColumnDef="CREATION_DATE">
+        <th mat-header-cell *matHeaderCellDef> Date de la demande </th>
+        <td mat-cell *matCellDef="let element"> {{ element.creationDate | date: 'short' }} </td>
+      </ng-container>
+  
+      <!-- Colonne PRIORITY -->
+      <ng-container matColumnDef="PRIORITY">
+        <th mat-header-cell *matHeaderCellDef> Priorité </th>
+        <td mat-cell *matCellDef="let element"> {{ element.priority }} </td>
+      </ng-container>
+  
+      <!-- Colonne STATUS -->
+      <ng-container matColumnDef="STATUS">
+        <th mat-header-cell *matHeaderCellDef> Statut </th>
+        <td mat-cell *matCellDef="let element"> {{ element.status }} </td>
+      </ng-container>
+  
+      <!-- Colonne TREATMENT -->
+      <ng-container matColumnDef="TREATMENT">
+        <th mat-header-cell *matHeaderCellDef> Prise en charge </th>
+        <td mat-cell *matCellDef="let element"> {{ element.validationDate ? 'Oui' : 'Non' }} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <!-- Description détaillée -->
+    <div *ngIf="showDescription">
+      <h3>Description détaillée</h3>
+      <p *ngFor="let element of interventionData.data">
+        {{ element.description }}
+      </p>
+    </div>
+  
+    <!-- Pagination -->
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of interventions">
+    </mat-paginator>
+  </div>

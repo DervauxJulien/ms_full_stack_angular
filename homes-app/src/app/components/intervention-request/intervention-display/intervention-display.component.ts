@@ -6,8 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { InterventionService } from '../../../services/intervention.service';
 import { ActivatedRoute, Data, RouterModule } from '@angular/router';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { HeaderComponent } from '../../header/header.component';
-import { Intervention } from './intervention-interface';
+import { Intervention } from '../../../interfaces/intervention-interface';
 import { UsersService } from '../../../services/users.service';
 
 @Component({
@@ -20,7 +19,6 @@ import { UsersService } from '../../../services/users.service';
     MatButtonModule, 
     RouterModule, 
     MatPaginatorModule, 
-    HeaderComponent,
   ],
   templateUrl: './intervention-display.component.html',
   styleUrls: ['./intervention-display.component.css'],
@@ -56,46 +54,46 @@ export class InterventionDisplayComponent implements AfterViewInit {
   ngOnInit() {
     this.interventionId = this.route.snapshot.paramMap.get('id')!;
 
-    if (this.interventionId) {
-      this.interventionService.getInterventionById(this.interventionId).subscribe
-      ({
-        next: (data) => {
-          this.interventionData.data = [data];
-          this.dataIntervention = [data];
-          this.loading = false;
-          console.log(this.interventionData);
-        },
-        error: (error) => {
-          console.error('Erreur lors de la récupération des données:', error);
-          this.loading = false;
-        },
-      });
-    } else {
-      console.error('Aucun ID fourni pour récupérer les données.');
-      this.loading = false;
-    }
+    // if (this.interventionId) {
+    //   this.interventionService.getInterventionById(this.interventionId).subscribe
+    //   ({
+    //     next: (data) => {
+    //       this.interventionData.data = [data];
+    //       this.dataIntervention = [data];
+    //       this.loading = false;
+    //       console.log(this.interventionData);
+    //     },
+    //     error: (error) => {
+    //       console.error('Erreur lors de la récupération des données:', error);
+    //       this.loading = false;
+    //     },
+    //   });
+    // } else {
+    //   console.error('Aucun ID fourni pour récupérer les données.');
+    //   this.loading = false;
+    // }
 
-    this.interventionService.getAllInterventions().subscribe({
-      next: (data) => {
-        this.allIntervention = data;
-        console.log(data);
-      },
-      error: (error) => {
-        console.error('Erreur lors de la récupération de toutes les données:', error);
-        this.loading = false;
-      },
-    })
+    // this.interventionService.getAllInterventions().subscribe({
+    //   next: (data) => {
+    //     this.allIntervention = data;
+    //     console.log(data);
+    //   },
+    //   error: (error) => {
+    //     console.error('Erreur lors de la récupération de toutes les données:', error);
+    //     this.loading = false;
+    //   },
+    // })
 
-    this.userService.getAllUsers().subscribe({
-      next: (data) => {
-        this.users = [data]
-        console.log(this.users);
-      },
-      error: (error) => {
-        console.error('Erreur lors de la récupération des données:', error);
-        this.loading = false;
-      },
-    })
+    // this.userService.getAllUsers().subscribe({
+    //   next: (data) => {
+    //     this.users = [data]
+    //     console.log(this.users);
+    //   },
+    //   error: (error) => {
+    //     console.error('Erreur lors de la récupération des données:', error);
+    //     this.loading = false;
+    //   },
+    // })
   }
 
   ngAfterViewInit() {
