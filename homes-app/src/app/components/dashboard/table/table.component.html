@@ -6,8 +6,9 @@
   <div *ngIf="loading">Chargement des données...</div>
   
   <div class="mat-elevation-z8" *ngIf="!loading">
+    <!-- <div><p>{{data}}</p></div> -->
     <!-- Table Material -->
-    <table mat-table [dataSource]="interventionData" class="mat-table">
+    <table mat-table [dataSource]="data" class="mat-table">
       <!-- Bouton Détails -->
       <ng-container matColumnDef="SHOWDETAILS">
         <th mat-header-cell *matHeaderCellDef> . </th>

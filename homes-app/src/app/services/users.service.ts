@@ -15,6 +15,9 @@ export class UsersService {
   setUser(data: Partial<User>): Observable<User> {
     return this.http.post<User>(`${this.baseUrl}/checkUser`, data);
   }
+  login(data: Partial<User>): Observable<User> {
+    return this.http.post<User>(`${this.baseUrl}/login`, data);
+  }
 
   setData(key: string, value: any): any {
     this.dataCache[key] = value;
