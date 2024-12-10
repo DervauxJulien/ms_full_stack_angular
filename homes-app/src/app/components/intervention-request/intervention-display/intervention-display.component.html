@@ -7,7 +7,7 @@
 
 <div class="mat-elevation-z8" *ngIf="!loading">
   <!-- Table Material -->
-  <table mat-table [dataSource]="interventionData" class="mat-table">
+  <table mat-table [dataSource]="data" class="mat-table">
     <!-- Bouton Détails -->
     <ng-container matColumnDef="SHOWDETAILS">
       <th mat-header-cell *matHeaderCellDef> . </th>
@@ -64,10 +64,8 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <!-- Description détaillée -->
   <div *ngIf="showDescription">
-    <h3>Description détaillée</h3>
-    <p *ngFor="let element of interventionData.data">
+    <p *ngFor="let element of data">
       {{ element.description }}
     </p>
   </div>

@@ -15,7 +15,7 @@ export class InterventionService {
     return this.http.post<Intervention>(`${this.baseUrl}/create_intervention_rest`, data);
   }
 
-  getInterventionById(data : any): Observable<Intervention> {
+  getInterventionById(data : Number): Observable<Intervention> {
     return this.http.post<Intervention>(`${this.baseUrl}/intervention_details`, data);
   }
 

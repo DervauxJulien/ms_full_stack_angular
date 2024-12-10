@@ -12,7 +12,7 @@
     </div>
     <section class="flex justify-center mb-5">
       <div class="flex justify-center bg-slate-100 w-52 p-5 rounded-lg">
-        <!-- {{ interventionData.id }} -->
+        {{ interventionId }}
       </div>
     </section>
     <section
@@ -37,7 +37,7 @@
         <p>Chargement des données...</p>
       </div>
 
-      <div *ngIf="!loading && !interventionData">
+      <div *ngIf="!loading">
         <p>Aucune donnée trouvée pour cette intervention.</p>
       </div>
     </section>

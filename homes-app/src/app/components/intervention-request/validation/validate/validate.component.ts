@@ -14,8 +14,8 @@ import { Intervention } from 'src/app/interfaces/intervention-interface';
 export class ValidateComponent {
 
   interventionId!: number; 
-  interventionData!: Intervention; 
   loading = true; 
+
 
   constructor(
     private InterventionService: InterventionService,
@@ -24,18 +24,9 @@ export class ValidateComponent {
 
   ngOnInit() {
     this.interventionId = Number(this.route.snapshot.paramMap.get('id')!);
-    console.log(this.interventionId);
-
+    
     if (this.interventionId) {
       this.InterventionService.getInterventionById(this.interventionId).subscribe({
-        next: (data) => {
-          this.interventionData = data;
-          this.loading = false;
-        },
-        error: (error) => {
-          console.error('Erreur lors de la récupération des données:', error);
-          this.loading = false;
-        },
       });
     } else {
       console.error('Aucun ID fourni pour récupérer les données.');
