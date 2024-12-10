@@ -1,1 +1,22 @@
-<p>login works!</p>
+<!-- login.component.html -->
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <input 
+      type="text" 
+      formControlName="registration" 
+      placeholder="Numéro de matricule" 
+    />
+    <input 
+      type="password" 
+      formControlName="passwordUser" 
+      placeholder="Mot de passe" 
+    />
+    <button 
+      type="submit" 
+      [disabled]="loginForm.invalid">
+      Se connecter
+    </button>
+    <p *ngIf="errorMessage" class="error">
+      {{ errorMessage }}
+    </p>
+  </form>
+  
