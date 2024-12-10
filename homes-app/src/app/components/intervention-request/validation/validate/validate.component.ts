@@ -13,9 +13,8 @@ import { Intervention } from 'src/app/interfaces/intervention-interface';
 })
 export class ValidateComponent {
 
-  interventionId!: number; 
-  loading = true; 
-
+  userId!: number; 
+  idIntervention!: number;
 
   constructor(
     private InterventionService: InterventionService,
@@ -23,14 +22,23 @@ export class ValidateComponent {
   ) {}
 
   ngOnInit() {
-    this.interventionId = Number(this.route.snapshot.paramMap.get('id')!);
+    this.userId = Number(this.route.snapshot.paramMap.get('id')!);
     
-    if (this.interventionId) {
-      this.InterventionService.getInterventionById(this.interventionId).subscribe({
+    if (this.userId) {
+      this.InterventionService.getInterventionById(this.userId).subscribe({
+        next: (data) => {
+          this.idIntervention = data.idIntervention
+          // this.loading = false;
+          console.log(`ici la response details`, data);
+        },
+        error: (error) => {
+          console.error('Erreur lors de la récupération des données:', error);
+          // this.loading = false;
+        },
       });
     } else {
       console.error('Aucun ID fourni pour récupérer les données.');
-      this.loading = false;
+      // this.loading = false;
     }
   }
 

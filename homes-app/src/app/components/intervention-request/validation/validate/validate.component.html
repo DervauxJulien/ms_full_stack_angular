@@ -12,7 +12,7 @@
     </div>
     <section class="flex justify-center mb-5">
       <div class="flex justify-center bg-slate-100 w-52 p-5 rounded-lg">
-        {{ interventionId }}
+        {{ idIntervention }}
       </div>
     </section>
     <section
@@ -24,7 +24,7 @@
       <div class="flex-col justify-center p-5">
         <p>Veillez à conserver le numéro de demande d'intervention ci-dessus.</p><br>
         <p>Avec celui-ci, vous pourrez suivre l'évolution de votre demande à l'adresse : <br>
-          <a class="font-bold text-blue-500" href="intervention/{{interventionId}}">Suivre la demande</a>
+          <a class="font-bold text-blue-500" href="intervention/{{userId}}">Suivre la demande</a>
         </p><br>
         <p>
           Vous pourrez aussi l'indiquer aux personnes en charge des interventions pour qu'ils retrouvent facilement
@@ -33,13 +33,13 @@
         </p>
       </div>
 
-      <div *ngIf="loading">
+      <!-- <div *ngIf="loading">
         <p>Chargement des données...</p>
       </div>
 
       <div *ngIf="!loading">
         <p>Aucune donnée trouvée pour cette intervention.</p>
-      </div>
+      </div> -->
     </section>
   </section>
 </div>
