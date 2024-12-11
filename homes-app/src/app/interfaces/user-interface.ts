@@ -1,4 +1,5 @@
 export interface User {
+    map: any;
     idUser: number;           
     registration: string;      
     lastname: string;         

@@ -28,14 +28,18 @@ export class Login2Component {
       const userData = {
         ...this.loginForm.value,
       } as Partial<User>;
-
+  
       this.usersService.login(userData).subscribe({
         next: (userResponse) => {
           console.log('Réponse utilisateur :', userResponse);
-          this.usersService.setData('currentUserData', userResponse); 
-          this.router.navigate(['/dashboard'], {
-            state: { userData: userResponse }
-        });
+          if (Array.isArray(userResponse) && userResponse.length > 1) {
+            const idUser = userResponse[1]; 
+            console.log('ID utilisateur récupéré :', idUser);
+            localStorage.setItem("idUser", JSON.stringify(idUser)); 
+            this.router.navigate(['/dashboard']);
+          } else {
+            console.error('La réponse utilisateur ne contient pas assez d\'éléments.');
+          }
         },
         error: (error) => {
           console.error('Erreur lors de la vérification/création de l\'utilisateur :', error);
