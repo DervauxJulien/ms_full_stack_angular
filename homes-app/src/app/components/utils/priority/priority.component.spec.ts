@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UtilsComponent } from './utils.component';
+import { PriorityComponent } from './priority.component';
 
-describe('UtilsComponent', () => {
-  let component: UtilsComponent;
-  let fixture: ComponentFixture<UtilsComponent>;
+describe('PriorityComponent', () => {
+  let component: PriorityComponent;
+  let fixture: ComponentFixture<PriorityComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [UtilsComponent]
+      imports: [PriorityComponent]
     });
-    fixture = TestBed.createComponent(UtilsComponent);
+    fixture = TestBed.createComponent(PriorityComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

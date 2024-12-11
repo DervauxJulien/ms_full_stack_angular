@@ -5,8 +5,25 @@
 <div [ngClass]="isModalOpen ? 'bloc' : 'hidden'"
      class="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
     <div class="bg-white dark:bg-gray-900 dark:text-gray-100 p-8 rounded-lg shadow-lg max-w-md w-full relative">
-        <h2 class="text-2xl font-bold mb-4">oéoé</h2>
-        <p class="mb-6">ici la desc</p>
+        <app-priority></app-priority>
+        <h2 class="text-2xl font-bold mb-4">Description</h2>
+        <form class="max-w-sm mx-auto" [formGroup]="interventionForm" (ngSubmit)="submitIntervention()">
+            <div class="mb-5">
+                <div class="mt-4">
+                    <label for="location">Localisation de l'intervention</label>
+                    <select id="location" formControlName="location" class="border w-full p-2">
+                      <option *ngFor="let location of locations" [value]="location">{{ location.nameLocation }}</option>
+                    </select>
+                  </div>
+              <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                for="description">Description</label>
+              <textarea
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                id="description" type="text" formControlName="description"
+                placeholder="Description de l'intervention..."></textarea>
+            </div>
+            <button type="submit" class="primary" [disabled]="interventionForm.invalid">Apply now</button>
+          </form>
         <button class="bg-blue-500 dark:bg-slate-900 text-white px-4 py-2 rounded" (click)="closeModal()">
             Close modal
         </button>

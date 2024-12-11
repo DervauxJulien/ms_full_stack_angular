@@ -1,0 +1,20 @@
+<div class="flex justify-center gap-4">
+    <label class="flex items-center justify-center w-16 h-16 rounded-full cursor-pointer transition-all"
+           [ngClass]="{'bg-red-500 text-white': selectedTemperature === 'high', 'bg-gray-200': selectedTemperature !== 'high'}"
+           (click)="selectTemperature('high')">
+      <i class="fa fa-thermometer-full text-2xl"></i>
+    </label>
+    
+    <label class="flex items-center justify-center w-16 h-16 rounded-full cursor-pointer transition-all"
+           [ngClass]="{'bg-orange-500 text-white': selectedTemperature === 'medium', 'bg-gray-200': selectedTemperature !== 'medium'}"
+           (click)="selectTemperature('medium')">
+      <i class="fa fa-thermometer-half text-2xl"></i>
+    </label>
+    
+    <label class="flex items-center justify-center w-16 h-16 rounded-full cursor-pointer transition-all"
+           [ngClass]="{'bg-green-500 text-white': selectedTemperature === 'low', 'bg-gray-200': selectedTemperature !== 'low'}"
+           (click)="selectTemperature('low')">
+      <i class="fa fa-thermometer-empty text-2xl"></i>
+    </label>
+  </div>
+  

@@ -22,4 +22,10 @@ export class InterventionService {
   getAllInterventions(): Observable<Intervention[]> {
     return this.http.get<Intervention[]>(this.baseUrl);
   }
+
+  getLocations(): Observable<Location[]> {
+    return this.http.get<Location[]>(`${this.baseUrl}/locations`);
+  }
+
+  
 }
