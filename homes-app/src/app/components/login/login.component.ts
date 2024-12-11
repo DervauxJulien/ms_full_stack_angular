@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
+import { User } from 'src/app/interfaces/user-interface';
 
 @Component({
   selector: 'app-login',
@@ -35,7 +36,7 @@ export class LoginComponent {
       };
 
       this.authService.login(credentials).subscribe({
-        next: (user) => {
+        next: (user: User) => {
           if (user) {
             this.authService.setCurrentUser(user);
             this.router.navigate(['/intervention-display']);

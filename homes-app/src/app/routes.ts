@@ -7,6 +7,7 @@ import { InterventionDisplayComponent } from './components/intervention-request/
 // import { TableComponent } from './components/dashboard/table/table.component';
 import { authGuard } from './auth.guard';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const routeConfig: Routes = [
   { path: '', component: ConnectionComponent },
@@ -15,9 +16,10 @@ const routeConfig: Routes = [
   { path: 'intervention/:id', component: InterventionDisplayComponent },
   { path: 'intervention', component: InterventionDisplayComponent },
   { path: 'login', component:  LoginComponent},
+  {path: 'create_user_rest', component: RegisterComponent}
   // { path: 'dashboard/:id',component: TableComponent,
     //  canActivate: [authGuard],
     //  },
 ];
 
-export default routeConfig;git 
+export default routeConfig;

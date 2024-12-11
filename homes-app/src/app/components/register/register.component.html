@@ -1,0 +1,108 @@
+<div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+  <section class="flex justify-center mb-6">
+    <img src="assets/afpa-logo.jpg" alt="Logo" class="max-h-20">
+  </section>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="max-w-sm mx-auto">
+    <div class="mb-5">
+      <label for="firstName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+        Prénom
+      </label>
+      <input 
+        id="firstName" 
+        type="text" 
+        formControlName="firstName"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        [class.border-red-500]="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched"
+      >
+      <div *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched" class="text-red-500 text-sm mt-1">
+        <small *ngIf="registerForm.get('firstName')?.errors?.['required']">Le prénom est requis.</small>
+        <small *ngIf="registerForm.get('firstName')?.errors?.['minlength']">Le prénom doit avoir au moins 2 caractères.</small>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label for="lastName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+        Nom
+      </label>
+      <input 
+        id="lastName" 
+        type="text" 
+        formControlName="lastName"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        [class.border-red-500]="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched"
+      >
+      <div *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched" class="text-red-500 text-sm mt-1">
+        <small *ngIf="registerForm.get('lastName')?.errors?.['required']">Le nom est requis.</small>
+        <small *ngIf="registerForm.get('lastName')?.errors?.['minlength']">Le nom doit avoir au moins 2 caractères.</small>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+        Email
+      </label>
+      <input 
+        id="email" 
+        type="email" 
+        formControlName="email"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        [class.border-red-500]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+      >
+      <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="text-red-500 text-sm mt-1">
+        <small *ngIf="registerForm.get('email')?.errors?.['required']">L'email est requis.</small>
+        <small *ngIf="registerForm.get('email')?.errors?.['email']">Format d'email invalide.</small>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+        Mot de passe
+      </label>
+      <input 
+        id="password" 
+        type="password" 
+        formControlName="password"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        [class.border-red-500]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+      >
+      <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="text-red-500 text-sm mt-1">
+        <small *ngIf="registerForm.get('password')?.errors?.['required']">Le mot de passe est requis.</small>
+        <small *ngIf="registerForm.get('password')?.errors?.['minlength']">Le mot de passe doit avoir au moins 8 caractères.</small>
+        <small *ngIf="registerForm.get('password')?.errors?.['pattern']">Le mot de passe doit contenir des lettres et des chiffres.</small>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label for="repeatPassword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+        Répéter le mot de passe
+      </label>
+      <input 
+        id="repeatPassword" 
+        type="password" 
+        formControlName="repeatPassword"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        [class.border-red-500]="registerForm.get('repeatPassword')?.invalid && registerForm.get('repeatPassword')?.touched"
+      >
+      <div *ngIf="registerForm.hasError('passwordMismatch') && registerForm.get('repeatPassword')?.touched" class="text-red-500 text-sm mt-1">
+        <small>Les mots de passe ne correspondent pas.</small>
+      </div>
+    </div>
+
+    <div *ngIf="submissionError" class="mb-5 text-red-500 text-sm">
+      {{ submissionError }}
+    </div>
+
+    <div *ngIf="submissionSuccess" class="mb-5 text-green-500 text-sm">
+      {{ submissionSuccess }}
+    </div>
+
+    <button 
+      type="submit" 
+      [disabled]="registerForm.invalid || isSubmitting"
+      class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+    >
+      {{ isSubmitting ? 'Enregistrement en cours...' : 'Soumettre' }}
+    </button>
+  </form>
+</div>
