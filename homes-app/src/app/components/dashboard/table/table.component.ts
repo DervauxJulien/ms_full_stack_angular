@@ -7,6 +7,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
 import { Intervention } from 'src/app/interfaces/intervention-interface';
 import { InterventionService } from 'src/app/services/intervention.service';
+import { ModalComponent } from '../../utils/modal/modal.component';
 
 @Component({
   selector: 'app-table',
@@ -17,6 +18,7 @@ import { InterventionService } from 'src/app/services/intervention.service';
     MatPaginatorModule,
     MatButtonModule,
     RouterModule,
+    ModalComponent
   ],
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
@@ -56,9 +58,14 @@ export class TableComponent implements OnInit, AfterViewInit {
     }
 
     this.usersService.getCurrentInterventionByUser(idUser).subscribe({
-      next: (data: Intervention[]) => {
-        console.log('Données utilisateur récupérées :', data);
-        this.data = data; 
+      next: (response: [Intervention[], number ]) => { 
+        console.log('Réponse de l\'API :', response);
+        
+        const interventions = response[0];
+        // this.interventionData = response[0]
+        console.log('Tableau d\'interventions extrait :', interventions);
+  
+        this.data = interventions; 
         this.loading = false;
       },
       error: (error) => {

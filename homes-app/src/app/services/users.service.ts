@@ -8,13 +8,11 @@ import { Intervention } from '../interfaces/intervention-interface';
   providedIn: 'root'
 })
 export class UsersService {
-  private baseUrl = 'http://localhost:8080';
-  private userDataSubject = new BehaviorSubject<any>(
-    JSON.parse(localStorage.getItem('currentUserData') || 'null') 
-  );
-  userData$ = this.userDataSubject.asObservable();
 
-  constructor(private http: HttpClient) {}
+  private dataCache: any = {};
+  private baseUrl = 'http://localhost:8080';
+
+  constructor(private http: HttpClient) { }
 
   setUser(data: Partial<User>): Observable<User> {
     return this.http.post<User>(`${this.baseUrl}/checkUser`, data);
@@ -24,25 +22,21 @@ export class UsersService {
     return this.http.post<User>(`${this.baseUrl}/login`, data);
   }
 
-  getCurrentInterventionByUser(idUser: number): Observable<Intervention[]> {
-    const payload = { idUser };
-    return this.http.post<Intervention[]>(`${this.baseUrl}/interventions_user`, payload);
+  getCurrentInterventionByUser(idUser: number): Observable<[Intervention[], number]> {
+    const payload = { idUser }; 
+    return this.http.post<[Intervention[], number]>(`${this.baseUrl}/interventions_user`, payload);
   }
 
-  setData(key: string, value: any): void {
-    if (key === 'currentUserData') {
-      localStorage.setItem(key, JSON.stringify(value)); 
-      this.userDataSubject.next(value); 
-    }
+  setData(key: string, value: any): any {
+    this.dataCache[key] = value;
+    console.log(this.dataCache[key]);
   }
 
   getData(key: string): any {
-    const value = localStorage.getItem(key);
-    return value ? JSON.parse(value) : null;
+    return this.dataCache[key];
   }
 
   clearData(): void {
-    localStorage.clear(); 
-    this.userDataSubject.next(null); 
+    this.dataCache = {};
   }
-}
+  }

@@ -32,8 +32,8 @@ export class Login2Component {
       this.usersService.login(userData).subscribe({
         next: (userResponse) => {
           console.log('Réponse utilisateur :', userResponse);
-          if (Array.isArray(userResponse) && userResponse.length > 1) {
-            const idUser = userResponse[1]; 
+          if (userResponse) {
+            const idUser = userResponse; 
             console.log('ID utilisateur récupéré :', idUser);
             localStorage.setItem("idUser", JSON.stringify(idUser)); 
             this.router.navigate(['/dashboard']);
