@@ -36,7 +36,7 @@ export class LoginComponent {
       };
 
       this.authService.login(credentials).subscribe({
-        next: (user: User) => {
+        next: (user: User | null) => {
           if (user) {
             this.authService.setCurrentUser(user);
             this.router.navigate(['/intervention-display']);

@@ -13,7 +13,7 @@ export class UsersService {
   constructor(private http: HttpClient) {}
 
   setUser(data: Partial<User>): Observable<User> {
-    return this.http.post<User>(`${this.baseUrl}/checkUser`, data);
+    return this.http.post<User>(`${this.baseUrl}/create_user_rest`, data);
   }
 
   setData(key: string, value: any): any {
