@@ -26,10 +26,10 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.fb.group({
-      firstName: ['', [Validators.required, Validators.minLength(2)]],
-      lastName: ['', [Validators.required, Validators.minLength(2)]],
-      // email: ['', [Validators.required, Validators.email]],
-      password: ['', [
+      firstname: ['', [Validators.required, Validators.minLength(2)]],
+      lastname: ['', [Validators.required, Validators.minLength(2)]],
+      registration: ['', [Validators.required, Validators.minLength(9)]],
+      passwordUser: ['', [
         Validators.required,
         Validators.minLength(8),
         Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)
@@ -39,9 +39,9 @@ export class RegisterComponent implements OnInit {
   }
 
   passwordMatchValidator(form: FormGroup) {
-    const password = form.get('password');
+    const passwordUser = form.get('passwordUser');
     const repeatPassword = form.get('repeatPassword');
-    return password && repeatPassword && password.value === repeatPassword.value
+    return passwordUser && repeatPassword && passwordUser.value === repeatPassword.value
       ? null
       : { passwordMismatch: true };
   }

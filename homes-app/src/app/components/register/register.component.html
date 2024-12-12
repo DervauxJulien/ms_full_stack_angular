@@ -5,36 +5,53 @@
 
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="max-w-sm mx-auto">
     <div class="mb-5">
-      <label for="firstName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+      <label for="firstname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
         Prénom
       </label>
       <input 
-        id="firstName" 
+        id="firstname" 
         type="text" 
-        formControlName="firstName"
+        formControlName="firstname"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        [class.border-red-500]="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched"
+        [class.border-red-500]="registerForm.get('firstname')?.invalid && registerForm.get('firstname')?.touched"
       >
-      <div *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched" class="text-red-500 text-sm mt-1">
-        <small *ngIf="registerForm.get('firstName')?.errors?.['required']">Le prénom est requis.</small>
-        <small *ngIf="registerForm.get('firstName')?.errors?.['minlength']">Le prénom doit avoir au moins 2 caractères.</small>
+      <div *ngIf="registerForm.get('firstname')?.invalid && registerForm.get('firstname')?.touched" class="text-red-500 text-sm mt-1">
+        <small *ngIf="registerForm.get('firstname')?.errors?.['required']">Le prénom est requis.</small>
+        <small *ngIf="registerForm.get('firstname')?.errors?.['minlength']">Le prénom doit avoir au moins 2 caractères.</small>
       </div>
     </div>
 
     <div class="mb-5">
-      <label for="lastName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+      <label for="lastname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
         Nom
       </label>
       <input 
-        id="lastName" 
+        id="lastname" 
         type="text" 
-        formControlName="lastName"
+        formControlName="lastname"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        [class.border-red-500]="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched"
+        [class.border-red-500]="registerForm.get('lastname')?.invalid && registerForm.get('lastname')?.touched"
       >
-      <div *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched" class="text-red-500 text-sm mt-1">
-        <small *ngIf="registerForm.get('lastName')?.errors?.['required']">Le nom est requis.</small>
-        <small *ngIf="registerForm.get('lastName')?.errors?.['minlength']">Le nom doit avoir au moins 2 caractères.</small>
+      <div *ngIf="registerForm.get('lastname')?.invalid && registerForm.get('lastname')?.touched" class="text-red-500 text-sm mt-1">
+        <small *ngIf="registerForm.get('lastname')?.errors?.['required']">Le nom est requis.</small>
+        <small *ngIf="registerForm.get('lastname')?.errors?.['minlength']">Le nom doit avoir au moins 2 caractères.</small>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label for="registration" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+        Matricule
+      </label>
+      <input 
+        id="registration" 
+        type="text" 
+        formControlName="registration"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        [class.border-red-500]="registerForm.get('registration')?.invalid && registerForm.get('registration')?.touched"
+      >
+      <div *ngIf="registerForm.get('registration')?.invalid && registerForm.get('registration')?.touched" class="text-red-500 text-sm mt-1">
+        <small *ngIf="registerForm.get('registration')?.errors?.['required']">Le matricule est requis.</small>
+        <small *ngIf="registerForm.get('registration')?.errors?.['minlength']">Le matricule doit avoir au moins 2 caractères.</small>
       </div>
     </div>
 <!-- 
@@ -56,21 +73,21 @@
     </div> -->
 
     <div class="mb-5">
-      <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+      <label for="passwordUser" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
         Mot de passe
       </label>
       <input 
-        id="password" 
+        id="passwordUser" 
         type="password" 
-        formControlName="password"
+        formControlName="passwordUser"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        [class.border-red-500]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+        [class.border-red-500]="registerForm.get('passwordUser')?.invalid && registerForm.get('passwordUser')?.touched"
       >
-      <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="text-red-500 text-sm mt-1">
-        <small *ngIf="registerForm.get('password')?.errors?.['required']">Le mot de passe est requis.</small>
-        <small *ngIf="registerForm.get('password')?.errors?.['minlength']">Le mot de passe doit avoir au moins 8 caractères.</small>
-        <small *ngIf="registerForm.get('password')?.errors?.['pattern']">Le mot de passe doit contenir des lettres et des chiffres.</small>
-      </div>
+      <!-- <div *ngIf="registerForm.get('passwordUser')?.invalid && registerForm.get('passwordUser')?.touched" class="text-red-500 text-sm mt-1">
+        <small *ngIf="registerForm.get('passwordUser')?.errors?.['required']">Le mot de passe est requis.</small>
+        <small *ngIf="registerForm.get('passwordUser')?.errors?.['minlength']">Le mot de passe doit avoir au moins 8 caractères.</small>
+        <small *ngIf="registerForm.get('passwordUser')?.errors?.['pattern']">Le mot de passe doit contenir des lettres et des chiffres.</small>
+      </div> -->
     </div>
 
     <div class="mb-5">
@@ -84,7 +101,7 @@
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         [class.border-red-500]="registerForm.get('repeatPassword')?.invalid && registerForm.get('repeatPassword')?.touched"
       >
-      <div *ngIf="registerForm.hasError('passwordMismatch') && registerForm.get('repeatPassword')?.touched" class="text-red-500 text-sm mt-1">
+      <div *ngIf="registerForm.hasError('passwordUserMismatch') && registerForm.get('repeatPassword')?.touched" class="text-red-500 text-sm mt-1">
         <small>Les mots de passe ne correspondent pas.</small>
       </div>
     </div>
