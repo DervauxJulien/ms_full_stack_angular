@@ -63,7 +63,7 @@ export class ModalComponent {
       }
       const interventionData = {
         description: this.interventionForm.value.description,
-        location: this.interventionForm.value.location,
+        nameLocation: this.interventionForm.value.location,
         idUser: Number(userId),
         priority: priority
       } as Partial<Intervention>;

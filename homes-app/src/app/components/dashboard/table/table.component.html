@@ -47,7 +47,7 @@
       <!-- Colonne PRIORITY -->
       <ng-container matColumnDef="PRIORITY">
         <th mat-header-cell *matHeaderCellDef> Priorité </th>
-        <td mat-cell *matCellDef="let element"> {{ element.priority }} </td>
+        <td mat-cell *matCellDef="let element" (click)="setIdIntervention(element.idIntervention)" (ngModelChange)="setColorPriority(element.priority)"> <app-priority></app-priority> </td>
       </ng-container>
   
       <!-- Colonne STATUS -->
@@ -75,6 +75,6 @@
     </div>
   
     <!-- Pagination -->
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of interventions">
-    </mat-paginator>
+    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of interventions">
+    </mat-paginator> -->
   </div>

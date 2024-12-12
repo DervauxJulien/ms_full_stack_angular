@@ -12,7 +12,7 @@
                 <div class="mt-4">
                     <label for="location">Localisation de l'intervention</label>
                     <select id="location" formControlName="location" class="border w-full p-2">
-                      <option *ngFor="let location of locations" [value]="location">{{ location.nameLocation }}</option>
+                      <option *ngFor="let location of locations" [value]="location.nameLocation">{{ location.nameLocation + location.idLocation }}</option>
                     </select>
                   </div>
               <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"

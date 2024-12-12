@@ -8,6 +8,7 @@ import { UsersService } from 'src/app/services/users.service';
 import { Intervention } from 'src/app/interfaces/intervention-interface';
 import { InterventionService } from 'src/app/services/intervention.service';
 import { ModalComponent } from '../../utils/modal/modal.component';
+import { PriorityComponent } from '../../utils/priority/priority.component';
 
 @Component({
   selector: 'app-table',
@@ -18,7 +19,8 @@ import { ModalComponent } from '../../utils/modal/modal.component';
     MatPaginatorModule,
     MatButtonModule,
     RouterModule,
-    ModalComponent
+    ModalComponent,
+    PriorityComponent
   ],
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
@@ -28,6 +30,8 @@ export class TableComponent implements OnInit, AfterViewInit {
   data!: Intervention[];
   loading = true;
   showDescription = false;
+  idIntervention! : number
+  colorPriority! : string
 
   displayedColumns: string[] = [
     'SHOWDETAILS',
@@ -57,6 +61,7 @@ export class TableComponent implements OnInit, AfterViewInit {
       return;
     }
 
+
     this.usersService.getCurrentInterventionByUser(idUser).subscribe({
       next: (response: [Intervention[], number ]) => { 
         console.log('Réponse de l\'API :', response);
@@ -82,5 +87,15 @@ export class TableComponent implements OnInit, AfterViewInit {
   toggleDescription(): void {
     this.showDescription = !this.showDescription;
     console.log('Description affichée:', this.showDescription);
+  }
+
+  setIdIntervention(data : any){
+    this.idIntervention = data
+    localStorage.setItem('idIntervention' , data)
+    console.log('talbe ' + this.idIntervention);
+  }
+
+  setColorPriority(data : string){
+    this.colorPriority = data
   }
 }

@@ -12,6 +12,7 @@ export class InterventionService {
   constructor(private http: HttpClient) {}
 
   submitIntervention(data: Partial<Intervention>): Observable<Intervention> {
+    console.log(data);
     return this.http.post<Intervention>(`${this.baseUrl}/create_intervention_rest`, data);
   }
 
@@ -27,5 +28,7 @@ export class InterventionService {
     return this.http.get<Location[]>(`${this.baseUrl}/locations`);
   }
 
-  
+  updatePriority(data : Partial<Intervention>): Observable<Intervention>{
+    return this.http.put<Intervention>(`${this.baseUrl}/intervention_update_priority`, data)
+  }
 }
