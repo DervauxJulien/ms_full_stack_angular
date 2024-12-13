@@ -25,6 +25,8 @@ import { PriorityComponent } from '../../utils/priority/priority.component';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
+
+
 export class TableComponent implements OnInit, AfterViewInit {
   interventionData = new MatTableDataSource<Intervention>(); 
   data!: Intervention[];
@@ -32,7 +34,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   showDescription = false;
   idIntervention! : number
   colorPriority! : string
-
+  selectedTemperature: string = '';
   displayedColumns: string[] = [
     'SHOWDETAILS',
     'ID_INTERVENTION',
@@ -44,13 +46,13 @@ export class TableComponent implements OnInit, AfterViewInit {
     'TREATMENT',
   ];
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-
   constructor(
     private usersService: UsersService,
     private route: ActivatedRoute,
     private interventionService: InterventionService
   ) {}
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngOnInit(): void {
     const idUser = Number(localStorage.getItem('idUser')); 
@@ -60,8 +62,6 @@ export class TableComponent implements OnInit, AfterViewInit {
       this.loading = false;
       return;
     }
-
-
     this.usersService.getCurrentInterventionByUser(idUser).subscribe({
       next: (response: [Intervention[], number ]) => { 
         console.log('Réponse de l\'API :', response);
@@ -80,6 +80,8 @@ export class TableComponent implements OnInit, AfterViewInit {
     });
   }
 
+  
+
   ngAfterViewInit(): void {
     this.interventionData.paginator = this.paginator;
   }
@@ -92,7 +94,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   setIdIntervention(data : any){
     this.idIntervention = data
     localStorage.setItem('idIntervention' , data)
-    console.log('talbe ' + this.idIntervention);
+    console.log('table ' + this.idIntervention);
   }
 
   setColorPriority(data : string){
