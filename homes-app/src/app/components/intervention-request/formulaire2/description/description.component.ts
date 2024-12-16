@@ -37,7 +37,7 @@ export class DescriptionComponent {
       const interventionData = {
         ...this.interventionForm.value,
         idUser: userId, 
-        idLocation : 2
+        nameLocation : "New York Office"
       } as Partial<Intervention>;
 
       console.log(interventionData);
