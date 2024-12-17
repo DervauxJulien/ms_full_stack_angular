@@ -49,7 +49,9 @@ export class InterventionDisplayComponent implements AfterViewInit {
   ) { }
 
   ngOnInit() {
-    this.interventionId = Number(this.route.snapshot.paramMap.get('id')!);
+    // this.interventionId = Number(this.route.snapshot.paramMap.get('id')!);
+    this.interventionId = Number(localStorage.getItem('idIntervention'));
+
     console.log(this.interventionId);
 
     if (this.interventionId) {

@@ -37,7 +37,7 @@ export class DescriptionComponent {
       const interventionData = {
         ...this.interventionForm.value,
         idUser: userId, 
-        nameLocation : "New York Office"
+        nameLocation : "hall"
       } as Partial<Intervention>;
 
       console.log(interventionData);
@@ -45,6 +45,7 @@ export class DescriptionComponent {
       this.interventionService.submitIntervention(interventionData).subscribe({
         next: (response) => {
           console.log('Intervention soumise :', response);
+          localStorage.setItem('idIntervention', JSON.stringify(response.idIntervention));
           alert('Intervention créée avec succès.');
           this.router.navigate([`/validate/${userId}`]); 
         },

@@ -23,12 +23,16 @@ export class ValidateComponent {
 
   ngOnInit() {
     this.userId = Number(this.route.snapshot.paramMap.get('id')!);
+
+    this.idIntervention = Number(localStorage.getItem('idIntervention'));
     
     if (this.userId) {
-      this.InterventionService.getInterventionById(this.userId).subscribe({
+      this.InterventionService.getInterventionById(this.idIntervention).subscribe({
         next: (data) => {
-          this.idIntervention = data.idIntervention
+
           // this.loading = false;
+
+
           console.log(`ici la response details`, data);
         },
         error: (error) => {
