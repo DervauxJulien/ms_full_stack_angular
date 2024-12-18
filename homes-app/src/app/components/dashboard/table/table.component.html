@@ -9,7 +9,7 @@
     <!-- <div><p>{{data}}</p></div> -->
      <app-modal></app-modal>
     <!-- Table Material -->
-    <table mat-table [dataSource]="data" class="mat-table">
+    <table mat-table [dataSource]="interventionData" class="mat-table">
       <!-- Bouton Détails -->
       <ng-container matColumnDef="SHOWDETAILS">
         <th mat-header-cell *matHeaderCellDef> . </th>
@@ -75,6 +75,12 @@
     </div>
   
     <!-- Pagination -->
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of interventions">
-    </mat-paginator>
+    <mat-paginator
+    [length]="length"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex"
+    [pageSizeOptions]="[5, 10, 20]"
+    (page)="onPageChanged($event)"
+    showFirstLastButtons>
+  </mat-paginator>
   </div>

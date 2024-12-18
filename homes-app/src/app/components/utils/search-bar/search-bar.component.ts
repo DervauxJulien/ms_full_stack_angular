@@ -12,7 +12,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent implements PipeTransform  {
-  @ViewChild('searchbar') searchbar: ElementRef;
+  @ViewChild('searchbar') searchbar!: ElementRef;
   searchText = '';
 
   toggleSearch: boolean = false;

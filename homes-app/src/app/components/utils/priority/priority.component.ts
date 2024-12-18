@@ -28,7 +28,7 @@ export class PriorityComponent {
 
 
   ngOnInit(): void {
-    this.selectedTemperature = this.element.priority
+    this.selectedTemperature = this.element.priority;
     const idUser = Number(localStorage.getItem('idUser'));
     console.log('id user table ' + idUser);
     if (!idUser) {
@@ -36,7 +36,7 @@ export class PriorityComponent {
       this.loading = false;
       return;
     }
-    console.log('ici la props : ' + this.element.priority);
+    // console.log('ici la props : ' + this.element.priority);
   }
 
   selectTemperature(value: string): void {
@@ -53,6 +53,6 @@ export class PriorityComponent {
       }
     })
     localStorage.setItem('priority', value);
-    console.log('ici la props : ' + this.element.priority);
+    // console.log('ici la props : ' + this.element.priority);
   }
 }

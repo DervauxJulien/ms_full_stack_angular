@@ -9,6 +9,8 @@ import { Intervention } from 'src/app/interfaces/intervention-interface';
 import { InterventionService } from 'src/app/services/intervention.service';
 import { ModalComponent } from '../../utils/modal/modal.component';
 import { PriorityComponent } from '../../utils/priority/priority.component';
+import { $ } from 'protractor';
+
 
 @Component({
   selector: 'app-table',
@@ -23,7 +25,7 @@ import { PriorityComponent } from '../../utils/priority/priority.component';
     PriorityComponent
   ],
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.css']
+  styleUrls: ['./table.component.css'],
 })
 
 
@@ -46,6 +48,10 @@ export class TableComponent implements OnInit, AfterViewInit {
     'TREATMENT',
   ];
 
+  length!:number;
+  pageSize = 10;
+  pageIndex = 0;
+
   constructor(
     private usersService: UsersService,
     private route: ActivatedRoute,
@@ -57,6 +63,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     const idUser = Number(localStorage.getItem('idUser')); 
     console.log('id user table ' + idUser);
+
     if (!idUser) {
       console.error('idUser introuvable dans localStorage.');
       this.loading = false;
@@ -66,12 +73,14 @@ export class TableComponent implements OnInit, AfterViewInit {
       next: (response: [Intervention[], number ]) => { 
         console.log('Réponse de l\'API :', response);
         
-        const interventions = response[0];
-        // this.interventionData = response[0]
-        console.log('Tableau d\'interventions extrait :', interventions);
+        
+        this.data = response[0];
+        console.log('Tableau d\'interventions extrait :', this.data);
   
-        this.data = interventions; 
+        const startIndex = this.pageSize*this.pageIndex;
+        this.interventionData.data = this.data.slice(startIndex, startIndex + this.pageSize);
         this.loading = false;
+        this.length = response[0].length;
       },
       error: (error) => {
         console.error('Erreur lors de la récupération des données utilisateur :', error);
@@ -100,4 +109,20 @@ export class TableComponent implements OnInit, AfterViewInit {
   setColorPriority(data : string){
     this.colorPriority = data
   }
+
+  // Gérer le changement de page
+  onPageChanged(event: any): void {
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+    console.log('Page changée:', this.pageIndex, 'Taille de page:', this.pageSize);
+    this.loadData();
+  }
+
+  // Méthode pour charger les données selon la pagination
+  loadData(): void {
+    const startIndex = this.pageSize*this.pageIndex;
+    this.interventionData.data = this.data.slice(startIndex, startIndex + this.pageSize);
+    this.length = this.data.length;
+  }
+
 }
