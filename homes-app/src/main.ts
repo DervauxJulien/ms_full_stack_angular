@@ -5,11 +5,12 @@ import { provideRouter } from '@angular/router';
 import routeConfig from './app/routes';
 import { importProvidersFrom } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
 
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routeConfig),
-    importProvidersFrom(HttpClientModule, BrowserAnimationsModule)
+    importProvidersFrom(HttpClientModule, BrowserAnimationsModule, MatDialogModule)
   ]
 })
   .catch(err => console.error(err));

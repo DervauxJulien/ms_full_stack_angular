@@ -43,6 +43,8 @@ export class Login2Component {
         },
         error: (error) => {
           console.error('Erreur lors de la vérification/création de l\'utilisateur :', error);
+        alert(error);
+
         },
       });
     } else {

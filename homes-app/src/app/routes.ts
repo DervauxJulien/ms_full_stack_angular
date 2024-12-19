@@ -6,6 +6,7 @@ import { ValidateComponent } from './components/intervention-request/validation/
 import { InterventionDisplayComponent } from './components/intervention-request/intervention-display/intervention-display.component';
 import { Login2Component } from './components/login2/login2.component';
 import { TableComponent } from './components/dashboard/table/table.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routeConfig: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routeConfig: Routes = [
   { path: 'validate/:id', component: ValidateComponent },
   { path: 'intervention/:id', component: InterventionDisplayComponent },
   { path: 'intervention', component: InterventionDisplayComponent },
+  { path: 'home', component: HomeComponent }
 ];
 
 export default routeConfig;

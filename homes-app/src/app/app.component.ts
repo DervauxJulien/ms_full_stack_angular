@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { HeaderComponent } from "./components/utils/header/header.component";
 
 
 @Component({
@@ -7,6 +8,7 @@ import { RouterModule } from '@angular/router';
   selector: 'app-root',
   template: `
   <main class="">
+  <app-header></app-header>
     <section>
     <router-outlet>
     </router-outlet>
@@ -14,9 +16,7 @@ import { RouterModule } from '@angular/router';
   </main>
   `,
   styleUrls: ['./app.component.css'],
-  imports: [RouterModule,
-    
-  ],
+  imports: [RouterModule, HeaderComponent],
 })
 export class AppComponent {
   title = 'homes';

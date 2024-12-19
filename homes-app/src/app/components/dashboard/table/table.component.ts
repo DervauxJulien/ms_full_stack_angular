@@ -10,6 +10,7 @@ import { InterventionService } from 'src/app/services/intervention.service';
 import { ModalComponent } from '../../utils/modal/modal.component';
 import { PriorityComponent } from '../../utils/priority/priority.component';
 import { $ } from 'protractor';
+import { User } from 'src/app/interfaces/user-interface';
 
 
 @Component({
@@ -51,6 +52,8 @@ export class TableComponent implements OnInit, AfterViewInit {
   length!:number;
   pageSize = 10;
   pageIndex = 0;
+  idUser!: number;
+  user!: User;
 
   constructor(
     private usersService: UsersService,
@@ -69,18 +72,25 @@ export class TableComponent implements OnInit, AfterViewInit {
       this.loading = false;
       return;
     }
+    this.usersService.getUserById(idUser).subscribe((userData =>{
+      this.user = userData;
+      console.log('Userinfo :', this.user);
+    }));
+    
     this.usersService.getCurrentInterventionByUser(idUser).subscribe({
       next: (response: [Intervention[], number ]) => { 
         console.log('Réponse de l\'API :', response);
         
-        
         this.data = response[0];
+        this.idUser = response[1];
+        this.loading = false;
         console.log('Tableau d\'interventions extrait :', this.data);
-  
+
+        // init pagination
         const startIndex = this.pageSize*this.pageIndex;
         this.interventionData.data = this.data.slice(startIndex, startIndex + this.pageSize);
-        this.loading = false;
         this.length = response[0].length;
+
       },
       error: (error) => {
         console.error('Erreur lors de la récupération des données utilisateur :', error);
