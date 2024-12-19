@@ -9,7 +9,6 @@ import { Intervention } from 'src/app/interfaces/intervention-interface';
 import { InterventionService } from 'src/app/services/intervention.service';
 import { ModalComponent } from '../../utils/modal/modal.component';
 import { PriorityComponent } from '../../utils/priority/priority.component';
-import { $ } from 'protractor';
 import { User } from 'src/app/interfaces/user-interface';
 
 
@@ -54,6 +53,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   pageIndex = 0;
   idUser!: number;
   user!: User;
+  priorityView = false;
 
   constructor(
     private usersService: UsersService,
@@ -74,9 +74,10 @@ export class TableComponent implements OnInit, AfterViewInit {
     }
     this.usersService.getUserById(idUser).subscribe((userData =>{
       this.user = userData;
-      console.log('Userinfo :', this.user);
+      if(this.user.roleUser==='admin' || this.user.roleUser==='formateur'){
+        this.priorityView = true;
+      }
     }));
-    
     this.usersService.getCurrentInterventionByUser(idUser).subscribe({
       next: (response: [Intervention[], number ]) => { 
         console.log('Réponse de l\'API :', response);

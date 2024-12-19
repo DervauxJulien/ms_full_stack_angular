@@ -14,20 +14,21 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PriorityComponent {
   @Input() element: any;
-
+  @Input() priorityView: boolean | undefined;
   constructor(
     private interventionService: InterventionService,
     private usersService: UsersService,
     private route: ActivatedRoute,
   ) { }
 
-
+  condition = true;
   selectedTemperature: string = '';
   loading = true;
   data!: Intervention[];
 
 
   ngOnInit(): void {
+    // console.log("----------------priorityView : ", this.priorityView);
     this.selectedTemperature = this.element.priority;
     const idUser = Number(localStorage.getItem('idUser'));
     console.log('id user table ' + idUser);
